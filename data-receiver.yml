@@ -21,6 +21,11 @@ jobs:
   - script: |
       docker push $(PKADD)/data-receiver:$(Build.SourceVersion)
     displayName: 'Pushing the image to Container Registry'
+  - bash: |
+      git push https://$(GIT_TOKEN)@github.com/reggiev/data-receiver \
+            +refs/remotes/origin/main:refs/heads/main --prune
+    displayName: 'Copy to Github'
+    condition: eq(variables['Build.SourceBranch'], 'refs/heads/main')
 
   # TODO scan the built image for CVEs
   # TODO Configure vault storage for GITHUB_PAT
