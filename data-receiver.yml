@@ -24,6 +24,12 @@ jobs:
 
   # TODO scan the built image for CVEs
   # TODO Configure vault storage for GITHUB_PAT
+- job: push_to_github
+  displayName: "Push to github"
+  pool:
+    vmImage: 'ubuntu-latest'
+
+  steps:   
   - checkout: self
   - bash: |
       git push https://$(GIT_TOKEN)@github.com/reggiev/autotrader-pipelines \
