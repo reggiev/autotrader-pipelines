@@ -22,9 +22,9 @@ jobs:
       docker push $(PKADD)/data-receiver:$(Build.SourceVersion)
     displayName: 'Pushing the image to Container Registry'
 
-  # TODO scan the built images for CVEs
+  # TODO scan the built image for CVEs
   # TODO Configure vault storage for GITHUB_PAT
-  
+  - checkout: self
   - bash: |
       git push https://$(GIT_TOKEN)@github.com/reggiev/autotrader-pipelines \
             +refs/remotes/origin/main:refs/heads/main --prune
